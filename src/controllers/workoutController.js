@@ -1,9 +1,9 @@
-// In src/controllers/workoutController.js
 const workoutService = require("../services/workoutService");
 
 const getAllWorkouts = (req, res) => {
+  const { mode } = req.query;
   try {
-    const allWorkouts = workoutService.getAllWorkouts();
+    const allWorkouts = workoutService.getAllWorkouts({ mode });
     res.send({ status: "OK", data: allWorkouts });
   } catch (error) {
     res
@@ -21,7 +21,7 @@ const getOneWorkout = (req, res) => {
       .status(400)
       .send({
         status: "FAILED",
-        data: { error: "Parameter ':workoutId' can not be empty" },
+        data: { error: "Parameter ':workoutId' cannot be empty" },
       });
   }
   try {
@@ -122,5 +122,4 @@ module.exports = {
   createNewWorkout,
   updateOneWorkout,
   deleteOneWorkout,
-  // getRecordsForWorkout,
 };
