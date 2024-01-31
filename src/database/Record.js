@@ -88,7 +88,7 @@ const deleteOneRecord = (recordId) => {
     if (indexForDeletion === -1) {
       throw {
         status: 400,
-        message: `Can't find workout with the id '${recordId}'`,
+        message: `Can't find record with the id '${recordId}'`,
       };
     }
     DB.records.splice(indexForDeletion, 1);
