@@ -1,8 +1,8 @@
 const express = require("express");
 const apicache = require("apicache");
-const workoutController = require("../../controllers/workoutController");
-const recordController = require("../../controllers/recordController");
 const memberController = require("../../controllers/memberController");
+const recordController = require("../../controllers/recordController");
+const workoutController = require("../../controllers/workoutController");
 
 const router = express.Router();
 const cache = apicache.middleware;
@@ -52,20 +52,17 @@ const cache = apicache.middleware;
  *                       type: string 
  *                       example: "Some error message"
  */
-// CRUD ENDPOINT FOR WORKOUTS
 
-router.get("/", cache("2 minutes"), workoutController.getAllWorkouts);
+// CRUD ENDPOINT FOR MEMBERS
 
-router.get("/:workoutId", workoutController.getOneWorkout);
+// router.get("/", cache("2 minutes"), memberController.getAllMembers);
 
-router.post("/", workoutController.createNewWorkout);
+// router.get("/:memberId", memberController.getOneMember);
 
-router.patch("/:workoutId", workoutController.updateOneWorkout);
+// router.post("/", memberController.createNewMember);
 
-router.delete("/:workoutId", workoutController.deleteOneWorkout);
+// router.patch("/:memberId", memberController.updateOneMember);
 
-// // ALLOW LOGICAL NESTING
-
-router.get("/:workoutId/records", recordController.getRecordForWorkout);
+// router.delete("/:memberId", memberController.deleteOneMember);
 
 module.exports = router;

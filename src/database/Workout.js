@@ -48,7 +48,6 @@ const getAllWorkouts = (filterParams) => {
         workout.mode.toLowerCase().includes(filterParams.mode)
       );
     }
-    // Other if-statements will go here for different parameters
     return workouts;
   } catch (error) {
     throw { status: 500, message: error };
