@@ -48,14 +48,16 @@ const createNewRecord = (newRecord) => {
   }
 };
 
+// Chequear condicionales a colocar
+
 const updateOneRecord = (recordId, changes) => {
   try {
     const isAlreadyAdded =
-      DB.records.findIndex((record) => record.id === changes.id) > -1;
+      DB.records.findIndex((record) => record.name === changes.name) > -1;
     if (isAlreadyAdded) {
       throw {
         status: 400,
-        message: `Workout with the name '${changes.name}' already exists`,
+        message: `Record with the name '${changes.name}' already exists`,
       };
     }
     const indexForUpdate = DB.records.findIndex(
@@ -67,14 +69,14 @@ const updateOneRecord = (recordId, changes) => {
         message: `Can't find workout with the id '${recordId}'`,
       };
     }
-    const updatedWorkout = {
+    const updatedRecord = {
       ...DB.records[indexForUpdate],
       ...changes,
       updatedAt: new Date().toLocaleString("en-US", { timeZone: "UTC" }),
     };
-    DB.records[indexForUpdate] = updatedWorkout;
+    DB.records[indexForUpdate] = updatedRecord;
     saveToDatabase(DB);
-    return updatedWorkout;
+    return updatedRecord;
   } catch (error) {
     throw { status: error?.status || 500, message: error?.message || error };
   }

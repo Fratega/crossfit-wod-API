@@ -51,14 +51,14 @@ const createNewMember = (newMember) => {
 const updateOneMember = (memberId, changes) => {
   try {
     const isAlreadyAdded =
-      DB.member.findIndex((member) => member.name === changes.name) > -1;
+      DB.members.findIndex((member) => member.name === changes.name) > -1;
     if (isAlreadyAdded) {
       throw {
         status: 400,
         message: `Member with the name '${changes.name}' already exists`,
       };
     }
-    const indexForUpdate = DB.member.findIndex(
+    const indexForUpdate = DB.members.findIndex(
       (member) => member.id === memberId
     );
     if (indexForUpdate === -1) {
@@ -68,11 +68,11 @@ const updateOneMember = (memberId, changes) => {
       };
     }
     const updatedMember = {
-      ...DB.member[indexForUpdate],
+      ...DB.members[indexForUpdate],
       ...changes,
       updatedAt: new Date().toLocaleString("en-US", { timeZone: "UTC" }),
     };
-    DB.member[indexForUpdate] = updatedMember;
+    DB.members[indexForUpdate] = updatedMember;
     saveToDatabase(DB);
     return updatedMember;
   } catch (error) {

@@ -83,7 +83,7 @@ const updateOneMember = (req, res) => {
       .status(400)
       .send({
         status: "FAILED",
-        data: { error: "Parameter ':memberId' cannot be empty" },
+        data: { error: "Parameter ':memberId' can not be empty" },
       });
   }
   try {

@@ -69,6 +69,8 @@ const createNewRecord = (req, res) => {
   }
 };
 
+// Chequear condicionales a colocar
+
 const updateOneRecord = (req, res) => {
   const {
     body,

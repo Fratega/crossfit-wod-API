@@ -34,6 +34,8 @@ const createNewRecord = (newRecord) => {
   }
 };
 
+// Chequear condicionales a colocar
+
 const updateOneRecord = (recordId, changes) => {
   try {
     const updatedRecord = Record.updateOneRecord(recordId, changes);
